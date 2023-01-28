@@ -1,24 +1,7 @@
 import { body } from 'express-validator';
 import { AppError, AppErrorCode } from '../../../shared';
 
-/**
- * The create user data-model validator.
- */
-export const createUserValidator = [
-  /* firstName field */
-  body('firstName').optional({ nullable: true }).isString().withMessage({
-    code: AppErrorCode.InvalidType,
-    title: AppError.InvalidType,
-    detail: 'USER.FIRST_NAME_INVALID_TYPE'
-  }),
-
-  /* lastName field */
-  body('lastName').optional({ nullable: true }).isString().withMessage({
-    code: AppErrorCode.InvalidType,
-    title: AppError.InvalidType,
-    detail: 'USER.LAST_NAME_INVALID_TYPE'
-  }),
-
+export const loginUserValidator = [
   /* email field */
   body('email')
     .exists({ checkNull: true })

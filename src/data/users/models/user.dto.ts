@@ -12,13 +12,13 @@ export interface UserDTO {
    * Gets or sets the firstName of the user.
    * @optional
    */
-  firstName?: string;
+  firstName: string | null;
 
   /**
    * Gets or sets the lastName of the user.
    * @optional
    */
-  lastName?: string;
+  lastName: string | null;
 
   /**
    * Gets or sets the email of the user.

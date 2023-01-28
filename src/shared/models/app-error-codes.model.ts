@@ -20,7 +20,7 @@ export enum AppErrorCode {
   /** The field type is String and its length is invalid. */
   InvalidLength = 6,
 
-  /** The entity field value already exists in another entity. */
+  /** The entity field value already exists in another entity field. */
   ValueExists = 7,
 
   /** The entity can't be deleted due to its existing relations with other entities. */

@@ -10,7 +10,7 @@ export class Hash {
    * @example const hashedPassword = await Hash.hash('123456');
    */
   static async hash(data: string): Promise<string> {
-    const salt = await bcrypt.genSalt(process.env.HASHING_SALT_ROUNDS);
+    const salt = await bcrypt.genSalt(10);
     return bcrypt.hash(data, salt);
   }
 

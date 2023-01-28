@@ -1,10 +1,9 @@
-import express, { Application } from 'express';
-import helmet from 'helmet';
 import compression from 'compression';
 import cors from 'cors';
+import express, { Application } from 'express';
+import helmet from 'helmet';
+import { authRelativeRoute, authRouter } from '../routes';
 import { errorHandler, Logger } from '../shared';
-import { authRelativeRoute, authRouter, Database } from '../data';
-// import { userRelativeRoute, userRouter } from '../routes';
 
 /**
  * Adds set of middlewares only if the app runs on the production machine.
@@ -56,7 +55,7 @@ function registerRoutes(app: Application): void {
    * @example http://localhost:3000/api/v1/
    * @example http://localhost:3000/api/v1/auth/login
    */
-  const apiBaseRoute = '/api/v1';
+  const apiBaseRoute = '/api/v1/';
 
   /** Start register routes. */
   app.use(apiBaseRoute + authRelativeRoute, authRouter);
@@ -88,12 +87,9 @@ export function setupServer(app: Application): void {
  * @param app The express application to start its express server.
  */
 export function startServer(app: Application): void {
-  const port = process.env.SERVER_PORT || 3000;
+  const port = process.env.APP_PORT || 3000;
 
-  /* Ensure that we don't start the server unless database is connected. */
-  Database.syncDatabase().then(() =>
-    app.listen(port, () => {
-      Logger.info(`Express server is running on port ${port}, under the ${process.env.ENV} environment`, null, true);
-    })
-  );
+  app.listen(port, () => {
+    Logger.info(`Express server is running on port ${port}, under the ${process.env.ENV} environment`, null, true);
+  });
 }
