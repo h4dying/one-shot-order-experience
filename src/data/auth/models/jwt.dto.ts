@@ -11,7 +11,7 @@ export interface JwtDTO {
   /**
    * Gets or sets the id of the user that the access token belongs to.
    */
-  userId: number;
+  userId: string;
 
   /**
    * Gets or the sets the numeric UTC date/time represents in `seconds`, in which the access token was issued.

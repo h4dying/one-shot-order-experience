@@ -10,7 +10,7 @@ export class JWT {
     });
   }
 
-  public static async verify(token: string, secret: string): Promise<JwtDTO> {
+  public static async verify(token: string, secret: string): Promise<JwtDTO | null> {
     return new Promise((resolve, reject) => {
       jwt.verify(token, secret, (err, decoded) => (err ? reject(err) : resolve(decoded as JwtDTO)));
     });

@@ -2,7 +2,7 @@ import compression from 'compression';
 import cors from 'cors';
 import express, { Application } from 'express';
 import helmet from 'helmet';
-import { authRelativeRoute, authRouter } from '../routes';
+import { authRelativeRoute, authRouter, userRelativeRoute, userRouter } from '../routes';
 import { errorHandler, Logger } from '../shared';
 
 /**
@@ -59,6 +59,7 @@ function registerRoutes(app: Application): void {
 
   /** Start register routes. */
   app.use(apiBaseRoute + authRelativeRoute, authRouter);
+  app.use(apiBaseRoute + userRelativeRoute, userRouter);
 }
 
 /**
@@ -90,6 +91,6 @@ export function startServer(app: Application): void {
   const port = process.env.APP_PORT || 3000;
 
   app.listen(port, () => {
-    Logger.info(`Express server is running on port ${port}, under the ${process.env.ENV} environment`, null, true);
+    Logger.info(`Express server is running on port ${port}, under the ${process.env.NODE_ENV} environment`, null, true);
   });
 }

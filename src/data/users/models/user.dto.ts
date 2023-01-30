@@ -6,7 +6,7 @@ export interface UserDTO {
   /**
    * Gets or sets the id of the user.
    */
-  id: number;
+  id: string;
 
   /**
    * Gets or sets the firstName of the user.

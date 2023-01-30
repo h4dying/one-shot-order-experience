@@ -7,7 +7,7 @@ declare namespace Express {
       /**
        * Gets or sets the id of the user.
        */
-      userId: number;
+      userId: string;
     };
   }
 }
