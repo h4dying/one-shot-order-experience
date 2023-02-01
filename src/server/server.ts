@@ -2,7 +2,7 @@ import compression from 'compression';
 import cors from 'cors';
 import express, { Application } from 'express';
 import helmet from 'helmet';
-import { authRelativeRoute, authRouter, userRelativeRoute, userRouter } from '../routes';
+import { authRelativeRoute, authRouter, roomRelativeRoute, roomRouter, userRelativeRoute, userRouter } from '../routes';
 import { errorHandler, Logger } from '../shared';
 
 /**
@@ -60,6 +60,7 @@ function registerRoutes(app: Application): void {
   /** Start register routes. */
   app.use(apiBaseRoute + authRelativeRoute, authRouter);
   app.use(apiBaseRoute + userRelativeRoute, userRouter);
+  app.use(apiBaseRoute + roomRelativeRoute, roomRouter);
 }
 
 /**

@@ -74,7 +74,7 @@ export class UsersDataAccess {
   }
 
   /**
-   * login an existing user based on the provided data-model.
+   * find an existing user based on the provided data-model.
    * @param data The data-model to create the new user.
    */
   public static async findByCredentials(data: LoginUserInput): Promise<DataResult<UserDTO>> {

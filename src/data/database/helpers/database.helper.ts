@@ -20,4 +20,20 @@ export class Database {
   public static get Users(): typeof Database.prisma.user {
     return Database.prisma.user;
   }
+
+  /**
+   * The Rooms model that maps the `rooms table` in the database.
+   * The model name will be `rooms` also.
+   */
+  public static get Rooms(): typeof Database.prisma.room {
+    return Database.prisma.room;
+  }
+
+  /**
+   * The Enrollment model that maps the `enrollments table` in the database.
+   * The model name will be `enrollments` also.
+   */
+  public static get Enrollments(): typeof Database.prisma.enrollment {
+    return Database.prisma.enrollment;
+  }
 }

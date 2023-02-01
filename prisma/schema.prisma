@@ -17,19 +17,18 @@ model User {
   email     String       @unique @db.VarChar(255)
   password  String       @db.VarChar(255)
   rooms     Enrollment[]
-  messages  Message[]
 
   @@map("users")
 }
 
 model Room {
-  id        String       @id @default(uuid()) @db.VarChar(36)
-  title     String?      @db.VarChar(50)
-  code      String       @default(uuid()) @db.VarChar(36)
-  size      Int?         @default(5)
-  createdAt DateTime     @default(now())
-  users     Enrollment[]
-  messages  Message[]
+  id          String       @id @default(uuid()) @db.VarChar(36)
+  title       String       @db.VarChar(50)
+  description String?
+  code        String       @default(uuid()) @db.VarChar(36)
+  capacity    Int?         @default(10)
+  createdAt   DateTime     @default(now())
+  users       Enrollment[]
 
   @@unique([title, code])
   @@map("rooms")
@@ -37,26 +36,26 @@ model Room {
 
 model Enrollment {
   userId String
-  roomId String
   user   User   @relation(fields: [userId], references: [id])
-  room   Room   @relation(fields: [roomId], references: [id])
+  roomId String
+  room   Room?  @relation(fields: [roomId], references: [id])
   role   Role   @default(USER)
 
   @@id([userId, roomId, role])
   @@map("enrollments")
 }
 
-model Message {
-  id      String   @id @default(uuid()) @db.VarChar(36)
-  content String   @db.VarChar(255)
-  user    User     @relation(fields: [userId], references: [id])
-  userId  String
-  room    Room     @relation(fields: [roomId], references: [id])
-  roomId  String
-  time    DateTime @default(now())
+// model Message {
+//   id      String   @id @default(uuid()) @db.VarChar(36)
+//   content String   @db.VarChar(255)
+//   user    User     @relation(fields: [userId], references: [id])
+//   userId  String
+//   room    Room     @relation(fields: [roomId], references: [id])
+//   roomId  String
+//   time    DateTime @default(now())
 
-  @@map("messages")
-}
+//   @@map("messages")
+// }
 
 enum Role {
   ADMIN
